@@ -23,7 +23,9 @@
       in {
         overlays.localOverlay = localOverlay;
         overlays.default = self.overlays.localOverlay;
-        packages = { inherit (pkgs) qgisWithPlugins; };
+        packages = {
+          inherit (pkgs) qgisWithPlugins globeBuilderQGIS networkGTQgis;
+        };
         packages = { default = self.packages."${system}".qgisWithPlugins; };
         apps = rec {
           qgisWithPlugins = flake-utils.lib.mkApp {

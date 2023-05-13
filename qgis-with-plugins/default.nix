@@ -1,4 +1,4 @@
-{ qgis, symlinkJoin, networkGTQgis, ... }:
+{ qgis, symlinkJoin, networkGTQgis, globeBuilderQGIS, makeWrapper, ... }:
 let
 
   inherit (qgis) version;
@@ -17,5 +17,7 @@ let
 in symlinkJoin {
   inherit version;
   name = "qgisWithPlugins-${version}";
-  paths = [ qgisWithPackages networkGTQgis ];
+  paths = [ qgisWithPackages networkGTQgis globeBuilderQGIS ];
+  pname = "qgis";
+  nativeBuildInputs = [ makeWrapper ];
 }
